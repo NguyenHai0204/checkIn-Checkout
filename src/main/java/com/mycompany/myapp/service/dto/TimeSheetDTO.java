@@ -19,7 +19,7 @@ public class TimeSheetDTO implements Serializable {
 
     private Instant checkOut;
 
-    private Instant overTime;
+    private String overTime;
 
     private String user;
 
@@ -55,11 +55,11 @@ public class TimeSheetDTO implements Serializable {
         this.checkOut = checkOut;
     }
 
-    public Instant getOverTime() {
+    public String getOverTime() {
         return overTime;
     }
 
-    public void setOverTime(Instant overTime) {
+    public void setOverTime(String overTime) {
         this.overTime = overTime;
     }
 

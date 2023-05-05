@@ -30,7 +30,7 @@ public class TimeSheet implements Serializable {
     private Instant checkOut;
 
     @Column(name = "over_time")
-    private Instant overTime;
+    private String overTime;
 
     @Column(name = "user")
     private String user;
@@ -89,16 +89,16 @@ public class TimeSheet implements Serializable {
         this.checkOut = checkOut;
     }
 
-    public Instant getOverTime() {
+    public String getOverTime() {
         return this.overTime;
     }
 
-    public TimeSheet overTime(Instant overTime) {
+    public TimeSheet overTime(String overTime) {
         this.setOverTime(overTime);
         return this;
     }
 
-    public void setOverTime(Instant overTime) {
+    public void setOverTime(String overTime) {
         this.overTime = overTime;
     }
 

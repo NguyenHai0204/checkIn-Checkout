@@ -8,6 +8,8 @@ import com.mycompany.myapp.web.rest.errors.BadRequestAlertException;
 import io.undertow.util.BadRequestException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -230,5 +232,14 @@ public class TimeSheetResource {
             .created(new URI("/api/time-sheets/checkin" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(applicationName, false, ENTITY_NAME, result.getId().toString()))
             .body(result);
+    }
+
+    @GetMapping("/time-sheets/currentDay")
+    public List<TimeSheetDTO> getimeSheetsDaily() {
+        log.debug("REST request to get all TimeSheets");
+        List<TimeSheetDTO> listTimeSheetDaily = new ArrayList<>();
+        LocalDate currentDate = LocalDate.now();
+        listTimeSheetDaily.add(timeSheetService.findByDate(currentDate).get());
+        return listTimeSheetDaily;
     }
 }

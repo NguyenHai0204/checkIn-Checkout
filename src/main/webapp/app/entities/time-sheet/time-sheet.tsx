@@ -68,9 +68,7 @@ export const TimeSheet = () => {
                   <td>
                     {timeSheet.checkOut ? <TextFormat type="date" value={timeSheet.checkOut} format={APP_LOCAL_TIME_FORMAT} /> : null}
                   </td>
-                  <td>
-                    {timeSheet.overTime ? <TextFormat type="date" value={timeSheet.overTime} format={APP_LOCAL_TIME_FORMAT} /> : null}
-                  </td>
+                  <td>{timeSheet.overTime}</td>
                   <td>{timeSheet.user}</td>
                   <td className="text-end">
                     <div className="btn-group flex-btn-group-container">

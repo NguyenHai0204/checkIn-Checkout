@@ -192,6 +192,7 @@ public class TimeSheetService {
         //Get Date And Time Checkin
         Instant checkoutTime = Instant.now();
         LocalDate checkinDate = LocalDate.now();
+        String overTime;
         //Emd Get Date And Time Checkin
 
         //Check duplicate CheckinDateTime
@@ -199,6 +200,9 @@ public class TimeSheetService {
         if (checkFoundCheckin.isPresent()) {
             checkFoundCheckin.get().setCheckOut(checkoutTime);
             checkFoundCheckin.get().setUser(username);
+
+            overTime = caculatorOverTime(checkFoundCheckin.get().getCheckIn(), checkFoundCheckin.get().getCheckOut());
+            checkFoundCheckin.get().setOverTime(overTime);
         } else {
             throw new BadRequestException("We Need Checkin Before!");
             //End Check duplicate CheckinDateTime

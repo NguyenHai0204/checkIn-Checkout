@@ -9,6 +9,9 @@ import { useAppSelector } from 'app/config/store';
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { data } from 'autoprefixer';
+import { TextFormat } from 'react-jhipster';
+import { APP_LOCAL_DATE_FORMAT, APP_LOCAL_TIME_FORMAT } from 'app/config/constants';
 
 export const Home = () => {
   const account = useAppSelector(state => state.authentication.account);
@@ -24,10 +27,11 @@ export const Home = () => {
   const checkIn = timeSheetData => {
     axios
       .post('/api/time-sheets/checkin', timeSheetData)
-      .then(response => {
+      .then(async response => {
         console.log(response.status);
         if (response.status === 201) {
           toast.success('Check In Thành Công!');
+          await fetchData();
         }
       })
       .catch(error => {
@@ -39,10 +43,11 @@ export const Home = () => {
   const checkout = timeSheetData => {
     axios
       .post('/api/time-sheets/checkout', timeSheetData)
-      .then(response => {
+      .then(async response => {
         console.log(response.status);
         if (response.status === 201) {
           toast.success('Check Out Thành Công!');
+          await fetchData();
         }
       })
       .catch(error => {
@@ -58,6 +63,7 @@ export const Home = () => {
       // Thêm các thuộc tính khác của TimeSheet vào đây
     };
     checkIn(timeSheetData);
+    fetchData();
   };
 
   const handleSubmitCheckout = event => {
@@ -67,7 +73,19 @@ export const Home = () => {
       // Thêm các thuộc tính khác của TimeSheet vào đây
     };
     checkout(timeSheetData);
+    fetchData();
   };
+
+  const [timeSheetDaily, setTimeSheetDaily] = useState([]);
+
+  const fetchData = async () => {
+    const result = await axios.get('/api/time-sheets/currentDay');
+    setTimeSheetDaily(result.data);
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
 
   return (
     <Row>
@@ -89,18 +107,24 @@ export const Home = () => {
             </div>
             <div id="body">
               <table id="timeSheetDaily">
-                <tr>
-                  <th>Ngày</th>
-                  <th>User</th>
-                  <th>Check In</th>
-                  <th>Check Out</th>
-                </tr>
-                <tr>
-                  <td>04/05/2023</td>
-                  <td>archer@vietnam.vn</td>
-                  <td>08:00:00 AM</td>
-                  <td>05:00:00 PM</td>
-                </tr>
+                <thead>
+                  <tr>
+                    <th>Ngày</th>
+                    <th>User</th>
+                    <th>Check In</th>
+                    <th>Check Out</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {timeSheetDaily.map(item => (
+                    <tr key={item.id}>
+                      <td>{item.date}</td>
+                      <td>{item.user}</td>
+                      <td>{item.checkIn ? <TextFormat type="date" value={item.checkIn} format={APP_LOCAL_TIME_FORMAT} /> : null}</td>
+                      <td>{item.checkOut ? <TextFormat type="date" value={item.checkOut} format={APP_LOCAL_TIME_FORMAT} /> : null}</td>
+                    </tr>
+                  ))}
+                </tbody>
               </table>
             </div>
           </div>
