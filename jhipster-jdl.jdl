@@ -1,0 +1,16 @@
+entity TimeSheet {
+	id Long
+    date LocalDate
+    checkIn Instant
+    checkOut Instant
+    overTime Instant
+    user String
+}
+
+// Use Data Transfer Objects (DTO)
+dto * with mapstruct
+
+// Set service options to all except few
+service all with serviceImpl except TimeSheet
+
+

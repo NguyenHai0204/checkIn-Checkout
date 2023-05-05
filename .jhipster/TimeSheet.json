@@ -1,0 +1,40 @@
+{
+  "applications": "*",
+  "changelogDate": "20230504081845",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "time_sheet",
+  "fields": [
+    {
+      "fieldName": "id",
+      "fieldType": "Long"
+    },
+    {
+      "fieldName": "date",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "checkIn",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "checkOut",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "overTime",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "user",
+      "fieldType": "String"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "TimeSheet",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [],
+  "service": "serviceClass"
+}

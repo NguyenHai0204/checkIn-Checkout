@@ -1,0 +1,71 @@
+/* ==========================================================================
+Main page styles
+========================================================================== */
+.hipster {
+  display: inline-block;
+  width: 100%;
+  height: 497px;
+  background: url('../../../content/images/jhipster_family_member_1.svg') no-repeat center top;
+  background-size: contain;
+}
+
+#title {
+  margin-left: 45rem;
+}
+#time {
+  margin-left: 52rem;
+  color: red;
+}
+
+#date {
+  margin-left: 49rem;
+  color: darkred;
+}
+
+.button {
+  background-color: #4caf50;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 11px;
+  margin: 24px;
+  box-shadow: 10px 10px 5px #aaaaaa;
+}
+
+#button {
+  margin-left: 46rem;
+}
+
+#timeSheetDaily {
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#timeSheetDaily td,
+#timeSheetDaily th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#timeSheetDaily tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+#timeSheetDaily tr:hover {
+  background-color: #ddd;
+}
+
+#timeSheetDaily th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #04aa6d;
+  color: white;
+}
